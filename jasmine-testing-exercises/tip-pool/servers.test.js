@@ -13,7 +13,25 @@ describe("Servers test (with setup and tear-down)", function() {
 
   afterEach(function() {
     // teardown logic
-    serverNameInput.value = '';
-    
+    serverNameInput.value = ''; 
+  });
+}); 
+
+describe("Servers test (updating server table)", function() {
+  beforeEach(function () {
+    serverTbody.innerHTML = '';
+  });
+
+  it("should create and add new tr to serverTbody on updateServerTable()", function () {
+    updateServerTable();
+    const arr = Array.from(serverTbody.rows);
+    const servers = Array.from(Object.keys(allServers)).length;
+    expect(arr.length).toEqual(servers);
+  });
+
+  afterEach(function () {
+    serverId = 0;
+    allServers = {};
+    serverTbody.innerHTML = '';
   });
 });

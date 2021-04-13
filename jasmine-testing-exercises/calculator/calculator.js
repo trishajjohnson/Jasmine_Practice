@@ -15,7 +15,7 @@ function getCurrentUIValues() {
     years: +(document.getElementById("loan-years").value),
     rate: +(document.getElementById("loan-rate").value),
   }
-}
+} 
 
 // Get the inputs from the DOM.
 // Put some default values in the inputs
@@ -25,15 +25,15 @@ function setupIntialValues() {
   const values = { amount: 10000, years: 10, rate: 4.5 };
 
   const amountInput = document.getElementById("loan-amount");
-  values.amount = amountInput;
+  amountInput.value = values.amount;
   
   const yearsInput = document.getElementById("loan-years");
-  values.years = yearsInput;
+  yearsInput.value = values.years;
 
   const rateInput = document.getElementById("loan-rate");
-  values.rate = rateInput;
+  rateInput.value = values.rate;
 
-  calculateMonthlyPayment(values);
+  update();
 
 
 }
@@ -52,10 +52,11 @@ function calculateMonthlyPayment(values) {
   const monthlyRate = (values.rate / 100 ) / 12;
   const numPayments = Math.floor(values.years * 12);
   return ((values.amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -numPayments))).toFixed(2);
-  console.log(((values.amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -numPayments))).toFixed(2));
 }
 
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
+  const monthlyPayment = document.getElementById("monthly-payment");
+  monthlyPayment.innerText = "$" + monthly;
 }

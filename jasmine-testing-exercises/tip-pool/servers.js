@@ -2,7 +2,10 @@ let serverNameInput = document.getElementById('serverName');
 let serverForm = document.getElementById('serverForm');
 
 let serverTbody = document.querySelector('#serverTable tbody');
-
+// let $serverTbody = $('#serverTable tbody');
+let serverRows = document.querySelectorAll('#serverTable tbody tr');
+let serverTds = document.querySelectorAll('#serverTable tbody tr td');
+// let $serverRows = $(".serverRow");
 let allServers = {};
 let serverId = 0;
 
@@ -33,6 +36,7 @@ function updateServerTable() {
 
     let newTr = document.createElement('tr');
     newTr.setAttribute('id', key);
+    newTr.className = "serverRow";
 
     let tipAverage = sumPaymentTotal('tipAmt') / Object.keys(allServers).length;
 
@@ -41,4 +45,4 @@ function updateServerTable() {
 
     serverTbody.append(newTr);
   }
-}
+} 

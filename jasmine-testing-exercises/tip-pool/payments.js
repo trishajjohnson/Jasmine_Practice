@@ -3,6 +3,10 @@ let tipAmtInput = document.getElementById('tipAmt');
 let paymentForm = document.getElementById('paymentForm');
 
 let paymentTbody = document.querySelector('#paymentTable tbody');
+let paymentTbodyRows = document.querySelectorAll('#paymentTable tbody tr');
+
+let summaryTbody = document.querySelector("#summaryTable tbody");
+let summaryRows = document.querySelector("#summaryTable tbody tr");
 let summaryTds = document.querySelectorAll('#summaryTable tbody tr td');
 
 let allPayments = {};
@@ -39,9 +43,17 @@ function createCurPayment() {
   if (billAmt === '' || tipAmt === '') return;
 
   if (Number(billAmt) > 0 && Number(tipAmt) >= 0) {
-    return {
+    const payObj = {
       billAmt: billAmt,
       tipAmt: tipAmt,
+      tipPercent: calculateTipPercent(billAmt, tipAmt),
+    };
+
+    // console.log(payObj);
+
+    return {
+      billAmt: +billAmt,
+      tipAmt: +tipAmt,
       tipPercent: calculateTipPercent(billAmt, tipAmt),
     }
   }
@@ -68,7 +80,7 @@ function updateSummary() {
   if (paymentTotal === 0 && numberOfPayments === 0) {
     tipPercentAvg = 0;
   } else {
-    tipPercentAvg = paymentTotal / Object.keys(allPayments).length;
+    tipPercentAvg = paymentTotal / numberOfPayments;
   }
 
   summaryTds[0].innerHTML = '$' + sumPaymentTotal('billAmt');
@@ -76,3 +88,4 @@ function updateSummary() {
   summaryTds[2].innerHTML =  Math.round(tipPercentAvg) + '%';
 }
 
+  
