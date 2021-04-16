@@ -1,4 +1,5 @@
 describe("Servers test (with setup and tear-down)", function() {
+  
   beforeEach(function () {
     // initialization logic
     serverNameInput.value = 'Alice';
@@ -11,22 +12,13 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
-  afterEach(function() {
-    // teardown logic
-    serverNameInput.value = ''; 
-  });
-}); 
-
-describe("Servers test (updating server table)", function() {
-  beforeEach(function () {
-    serverTbody.innerHTML = '';
-  });
-
   it("should create and add new tr to serverTbody on updateServerTable()", function () {
+    submitServerInfo();
     updateServerTable();
     const arr = Array.from(serverTbody.rows);
-    const servers = Array.from(Object.keys(allServers)).length;
-    expect(arr.length).toEqual(servers);
+    const numServers = Object.keys(allServers).length;
+    expect(Object.keys(allServers).length).toEqual(serverId);
+    expect(arr.length).toEqual(numServers);
   });
 
   afterEach(function () {

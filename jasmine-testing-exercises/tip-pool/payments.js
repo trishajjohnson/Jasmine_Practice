@@ -44,18 +44,14 @@ function createCurPayment() {
 
   if (Number(billAmt) > 0 && Number(tipAmt) >= 0) {
     const payObj = {
-      billAmt: billAmt,
-      tipAmt: tipAmt,
+      billAmt: +billAmt,
+      tipAmt: +tipAmt,
       tipPercent: calculateTipPercent(billAmt, tipAmt),
     };
 
     // console.log(payObj);
 
-    return {
-      billAmt: +billAmt,
-      tipAmt: +tipAmt,
-      tipPercent: calculateTipPercent(billAmt, tipAmt),
-    }
+    return payObj;
   }
 }
 

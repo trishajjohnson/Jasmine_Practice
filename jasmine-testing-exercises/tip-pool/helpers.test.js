@@ -16,14 +16,21 @@ describe('helper functions calculateTipPercent, sumPaymentTotal and appendTd', f
         tipAmtInput.value = 45;
         submitPaymentInfo();
         expect(sumPaymentTotal("tipAmt")).toEqual(65);
+        expect(sumPaymentTotal("billAmt")).toEqual(400);
     });
 
-    // it('should calculate the tip percentage', function(){
-        
-    //     expect(calculateTipPercent(billAmt,tipAmt)).toEqual(20);
-    //     // billAmtInput.value = 300;
-    //     // tipAmtInput.value = 45;
-    // });
+    it('should calculate the tip percentage', function(){
+        let billAmt = +billAmtInput.value;
+        let tipAmt = +tipAmtInput.value;
+        console.log(calculateTipPercent(billAmt, tipAmt));
+        const tipP = calculateTipPercent(billAmt, tipAmt);
+        console.log('tipP', tipP);
+        console.log('typeof', typeof tipP);
+        expect( typeof tipP ).toBe('number');
+        expect(tipP).toEqual('20');
+        // billAmtInput.value = 300;
+        // tipAmtInput.value = 45;
+    });
 
     // it('should create and append new Td', function(){
         
@@ -42,18 +49,14 @@ describe('helper functions calculateTipPercent, sumPaymentTotal and appendTd', f
         //   tear down code 
         tipAmtInput.value = '';
         billAmtInput.value = '';
-        // allPayments = {};
-        // serverTbodyRows.remove();
-        // serverTbody.innerHTML = '';
-        // let row = document.createElement('tr');
-        // let td1 = document.createElement('td'); 
-        // let td2 = document.createElement('td'); 
-        // td1.innerText = 'Alice';
-        // td2.innerText = '$20';
-        // row.append(td1);
-        // row.append(td2);
-        // serverTbody.append(row);
-        // tipAmtInput.value = '';
+        allPayments = {};
+        paymentId = 0;
+        paymentTbody.innerHTML = '';
+        serverTbody.innerHTML = '';
+        // summaryTbody.innerHTML = '';
+        summaryTds[0].innerHTML = '';
+        summaryTds[1].innerHTML = '';
+        summaryTds[2].innerHTML = '';
 
     });
 });
