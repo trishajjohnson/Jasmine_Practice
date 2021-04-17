@@ -63,9 +63,24 @@ function appendPaymentTable(curPayment) {
   appendTd(newTr, '$' + curPayment.billAmt);
   appendTd(newTr, '$' + curPayment.tipAmt);
   appendTd(newTr, curPayment.tipPercent + '%');
-
+  appendDeleteBtn(newTr);
   paymentTbody.append(newTr);
+
 }
+
+let paymentTable = document.querySelector('#paymentTable');
+
+paymentTable.addEventListener('click', function(event) {
+    
+  if(event.target.innerText === 'X') {
+      
+      let row = event.target.closest('tr');
+      row.remove();
+
+    }
+
+});
+
 
 // Create table row element and pass to appendTd with calculated sum of all payment
 function updateSummary() {
